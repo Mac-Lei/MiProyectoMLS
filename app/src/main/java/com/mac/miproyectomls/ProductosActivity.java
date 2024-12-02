@@ -6,7 +6,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,31 +15,58 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductosActivity extends AppCompatActivity {
 
     private ListView listViewProductos;
     private ArrayAdapter<String> adapter;
-    private List<String> productosList;
+    private ArrayList<String> productosList;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_productos);
 
-        listViewProductos = findViewById(R.id.listViewProductos); // ID del ListView en el layout
+        // Inicializar vistas
+        listViewProductos = findViewById(R.id.listViewProductos);
+
+        // Inicializar Firebase
+        databaseReference = FirebaseDatabase.getInstance().getReference("productos");
+
+        // Inicializar la lista y el adaptador
         productosList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productosList);
         listViewProductos.setAdapter(adapter);
 
+        // Cargar productos de Firebase
         cargarProductos();
     }
 
     private void cargarProductos() {
-        // Referencia a la tabla "productos" en Firebase
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("productos");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                productosList.clear();
+                for (DataSnapshot productoSnapshot : snapshot.getChildren()) {
+                    Producto producto = productoSnapshot.getValue(Producto.class);
+                    if (producto != null) {
+                        String productoInfo = "ID: " + producto.getId() +
+                                "\nNombre: " + producto.getNombre() +
+                                "\nPrecio: $" + producto.getPrecio() +
+                                "\nCantidad: " + producto.getCantidad();
+                        productosList.add(productoInfo);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("FirebaseError", error.getMessage());
+                Toast.makeText(ProductosActivity.this, "Error al cargar los productos.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
