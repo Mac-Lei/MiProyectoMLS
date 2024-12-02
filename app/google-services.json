@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "968055752741",
+    "project_id": "miproyectomls-ce959",
+    "storage_bucket": "miproyectomls-ce959.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968055752741:android:b74186f8b8eb6b27f7d7cc",
+        "android_client_info": {
+          "package_name": "com.mac.miproyectomls"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnjW7EEMQGeStWQSOHYB92EZ_VTOKA4nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
