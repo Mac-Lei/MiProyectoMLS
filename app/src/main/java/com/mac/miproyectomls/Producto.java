@@ -1,20 +1,31 @@
 package com.mac.miproyectomls;
 
 public class Producto {
+    private String id;
     private String nombre;
-    private double precio;
+    private int precio;
     private int cantidad;
 
-    // Constructor vacío requerido por Firebase
-    public Producto() {}
+    public Producto() {
+        // Constructor vacío requerido por Firebase
+    }
 
-    public Producto(String nombre, double precio, int cantidad) {
+    public Producto(String id, String nombre, int precio, int cantidad) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
     }
 
-    // Getters y Setters
+    // Getters y setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -23,11 +34,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

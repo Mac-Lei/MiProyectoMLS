@@ -1,67 +1,144 @@
 package com.mac.miproyectomls;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class GestionProductosActivity extends AppCompatActivity {
+
+    private EditText editId, editNombre, editPrecio, editCantidad;
+    private Button btnAgregar, btnActualizar, btnEliminar;
+    private ListView listViewProductos;
+
+    private DatabaseReference databaseReference;
+    private ArrayList<String> productosList;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_productos);
 
-        // Asociar elementos de la interfaz
-        EditText Nombre = findViewById(R.id.nombre_producto);
-        EditText Precio = findViewById(R.id.precio_producto);
-        EditText Cantidad = findViewById(R.id.cantidad_producto);
-        Button btnGuardarProducto = findViewById(R.id.btn_guardar_producto);
+        // Inicializar vistas
+        editId = findViewById(R.id.editId);
+        editNombre = findViewById(R.id.editNombre);
+        editPrecio = findViewById(R.id.editPrecio);
+        editCantidad = findViewById(R.id.editCantidad);
+        btnAgregar = findViewById(R.id.btnAgregar);
+        btnActualizar = findViewById(R.id.btnActualizar);
+        btnEliminar = findViewById(R.id.btnEliminar);
+        listViewProductos = findViewById(R.id.listViewProductos);
 
-        // Inicializar referencia de Firebase
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("productos");
+        // Inicializar Firebase
+        databaseReference = FirebaseDatabase.getInstance().getReference("productos");
 
-        // Configurar evento de clic para el botón
-        btnGuardarProducto.setOnClickListener(v -> {
-            String nombre = Nombre.getText().toString().trim(); // Método corregido
-            String precio = Precio.getText().toString().trim();
-            String cantidad = Cantidad.getText().toString().trim();
+        // Inicializar lista y adaptador
+        productosList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productosList);
+        listViewProductos.setAdapter(adapter);
 
-            if (nombre.isEmpty() || precio.isEmpty() || cantidad.isEmpty()) {
-                Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
-            } else {
-                try {
-                    // Validar y guardar el producto
-                    double precioDouble = Double.parseDouble(precio);
-                    int cantidadInt = Integer.parseInt(cantidad);
-                    guardarProducto(databaseReference, nombre, precioDouble, cantidadInt);
-                } catch (NumberFormatException e) {
-                    Toast.makeText(this, "Precio o cantidad inválidos", Toast.LENGTH_SHORT).show();
+        // Cargar productos de Firebase
+        cargarProductos();
+
+        // Configurar botones
+        btnAgregar.setOnClickListener(view -> agregarProducto());
+        btnActualizar.setOnClickListener(view -> actualizarProducto());
+        btnEliminar.setOnClickListener(view -> eliminarProducto());
+    }
+
+    private void cargarProductos() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                productosList.clear();
+                for (DataSnapshot productoSnapshot : snapshot.getChildren()) {
+                    Producto producto = productoSnapshot.getValue(Producto.class);
+                    if (producto != null) {
+                        productosList.add(
+                                "ID: " + producto.getId() +
+                                        "\nNombre: " + producto.getNombre() +
+                                        "\nPrecio: $" + producto.getPrecio() +
+                                        "\nCantidad: " + producto.getCantidad()
+                        );
+                    }
                 }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("FirebaseError", error.getMessage());
+                Toast.makeText(GestionProductosActivity.this, "Error al cargar los productos.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void guardarProducto(DatabaseReference databaseReference, String nombre, double precio, int cantidad) {
-        // Generar un ID único para el producto
-        String id = databaseReference.push().getKey();
+    private void agregarProducto() {
+        String id = editId.getText().toString().trim();
+        String nombre = editNombre.getText().toString().trim();
+        String precioStr = editPrecio.getText().toString().trim();
+        String cantidadStr = editCantidad.getText().toString().trim();
 
-        if (id == null) {
-            Toast.makeText(this, "Error al generar ID", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(id) || TextUtils.isEmpty(nombre) || TextUtils.isEmpty(precioStr) || TextUtils.isEmpty(cantidadStr)) {
+            Toast.makeText(this, "Complete todos los campos.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Crear objeto del producto
-        Producto producto = new Producto(nombre, precio, cantidad);
+        int precio = Integer.parseInt(precioStr);
+        int cantidad = Integer.parseInt(cantidadStr);
 
-        // Guardar en la base de datos
+        Producto producto = new Producto(id, nombre, precio, cantidad);
         databaseReference.child(id).setValue(producto)
-                .addOnSuccessListener(aVoid -> Toast.makeText(this, "Producto guardado con éxito", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(this, "Error al guardar el producto", Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(unused -> Toast.makeText(this, "Producto agregado.", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Error al agregar el producto.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void actualizarProducto() {
+        String id = editId.getText().toString().trim();
+        String nombre = editNombre.getText().toString().trim();
+        String precioStr = editPrecio.getText().toString().trim();
+        String cantidadStr = editCantidad.getText().toString().trim();
+
+        if (TextUtils.isEmpty(id)) {
+            Toast.makeText(this, "El ID es obligatorio para actualizar.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int precio = Integer.parseInt(precioStr);
+        int cantidad = Integer.parseInt(cantidadStr);
+
+        Producto producto = new Producto(id, nombre, precio, cantidad);
+        databaseReference.child(id).setValue(producto)
+                .addOnSuccessListener(unused -> Toast.makeText(this, "Producto actualizado.", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Error al actualizar el producto.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void eliminarProducto() {
+        String id = editId.getText().toString().trim();
+
+        if (TextUtils.isEmpty(id)) {
+            Toast.makeText(this, "El ID es obligatorio para eliminar.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        databaseReference.child(id).removeValue()
+                .addOnSuccessListener(unused -> Toast.makeText(this, "Producto eliminado.", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(this, "Error al eliminar el producto.", Toast.LENGTH_SHORT).show());
     }
 }
