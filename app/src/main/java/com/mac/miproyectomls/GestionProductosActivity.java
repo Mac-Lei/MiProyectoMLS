@@ -3,8 +3,6 @@ package com.mac.miproyectomls;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +26,8 @@ public class GestionProductosActivity extends AppCompatActivity {
     private ListView listViewProductos;
 
     private DatabaseReference databaseReference;
-    private ArrayList<Producto> productosList; // Lista de objetos Producto
-    private ArrayAdapter<String> adapter; // Adaptador para mostrar los productos en el ListView
+    private ArrayList<Producto> productosList;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +56,20 @@ public class GestionProductosActivity extends AppCompatActivity {
         cargarProductos();
 
         // Configurar botones
-        btnAgregar.setOnClickListener(view -> agregarProducto());
-        btnActualizar.setOnClickListener(view -> actualizarProducto());
-        btnEliminar.setOnClickListener(view -> eliminarProducto());
+        btnAgregar.setOnClickListener(view -> {
+            agregarProducto();
+            limpiarCampos();
+        });
+
+        btnActualizar.setOnClickListener(view -> {
+            actualizarProducto();
+            limpiarCampos();
+        });
+
+        btnEliminar.setOnClickListener(view -> {
+            eliminarProducto();
+            limpiarCampos();
+        });
 
         // Configurar selección en el ListView
         listViewProductos.setOnItemClickListener((adapterView, view, position, id) -> seleccionarProducto(position));
@@ -156,5 +165,12 @@ public class GestionProductosActivity extends AppCompatActivity {
         databaseReference.child(id).removeValue()
                 .addOnSuccessListener(unused -> Toast.makeText(this, "Producto eliminado.", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(this, "Error al eliminar el producto.", Toast.LENGTH_SHORT).show());
+    }
+
+    private void limpiarCampos() {
+        editId.setText("");
+        editNombre.setText("");
+        editPrecio.setText("");
+        editCantidad.setText("");
     }
 }
