@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductosActivity extends AppCompatActivity {
@@ -135,6 +134,9 @@ public class ProductosActivity extends AppCompatActivity {
         totalCompra += productoCarrito.getPrecio() * cantidad;
         textTotalCompra.setText("Total: $" + totalCompra);
 
+        // Limpiar campo de cantidad
+        editCantidadSeleccionada.setText("");
+
         Toast.makeText(this, "Producto agregado al carrito.", Toast.LENGTH_SHORT).show();
         adapter.notifyDataSetChanged();
     }
@@ -145,7 +147,8 @@ public class ProductosActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, ResumenCompraActivity.class);
+        Intent intent = new Intent(this, activity_resumen_compra.class);
+        // Enviar los datos de productos y el total de la compra al resumen
         intent.putExtra("productos", productosSeleccionados);
         intent.putExtra("totalCompra", totalCompra);
         startActivity(intent);

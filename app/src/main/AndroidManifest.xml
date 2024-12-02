@@ -16,9 +16,6 @@
             android:name=".activity_resumen_compra"
             android:exported="false" />
         <activity
-            android:name=".ResumenCompraActivity"
-            android:exported="false" />
-        <activity
             android:name=".GestionProductosActivity"
             android:exported="false" />
         <activity
