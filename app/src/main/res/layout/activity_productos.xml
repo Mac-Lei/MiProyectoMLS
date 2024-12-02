@@ -5,10 +5,50 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Lista de productos -->
     <ListView
         android:id="@+id/listViewProductos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="10dp" />
+
+    <!-- Entrada para la cantidad -->
+    <TextView
+        android:id="@+id/textSeleccionProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Producto seleccionado: Ninguno"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editCantidadSeleccionada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad a comprar"
+        android:inputType="number" />
+
+    <!-- Mostrar el total -->
+    <TextView
+        android:id="@+id/textTotalCompra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: $0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <!-- Botón para confirmar la compra -->
+    <Button
+        android:id="@+id/btnConfirmarCompra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar compra"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
