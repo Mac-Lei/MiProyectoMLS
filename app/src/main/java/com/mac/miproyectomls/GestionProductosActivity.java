@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +28,8 @@ public class GestionProductosActivity extends AppCompatActivity {
     private ListView listViewProductos;
 
     private DatabaseReference databaseReference;
-    private ArrayList<String> productosList;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Producto> productosList; // Lista de objetos Producto
+    private ArrayAdapter<String> adapter; // Adaptador para mostrar los productos en el ListView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class GestionProductosActivity extends AppCompatActivity {
 
         // Inicializar lista y adaptador
         productosList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productosList);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>());
         listViewProductos.setAdapter(adapter);
 
         // Cargar productos de Firebase
@@ -60,6 +61,9 @@ public class GestionProductosActivity extends AppCompatActivity {
         btnAgregar.setOnClickListener(view -> agregarProducto());
         btnActualizar.setOnClickListener(view -> actualizarProducto());
         btnEliminar.setOnClickListener(view -> eliminarProducto());
+
+        // Configurar selección en el ListView
+        listViewProductos.setOnItemClickListener((adapterView, view, position, id) -> seleccionarProducto(position));
     }
 
     private void cargarProductos() {
@@ -67,10 +71,12 @@ public class GestionProductosActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 productosList.clear();
+                ArrayList<String> displayList = new ArrayList<>();
                 for (DataSnapshot productoSnapshot : snapshot.getChildren()) {
                     Producto producto = productoSnapshot.getValue(Producto.class);
                     if (producto != null) {
-                        productosList.add(
+                        productosList.add(producto);
+                        displayList.add(
                                 "ID: " + producto.getId() +
                                         "\nNombre: " + producto.getNombre() +
                                         "\nPrecio: $" + producto.getPrecio() +
@@ -78,6 +84,8 @@ public class GestionProductosActivity extends AppCompatActivity {
                         );
                     }
                 }
+                adapter.clear();
+                adapter.addAll(displayList);
                 adapter.notifyDataSetChanged();
             }
 
@@ -87,6 +95,14 @@ public class GestionProductosActivity extends AppCompatActivity {
                 Toast.makeText(GestionProductosActivity.this, "Error al cargar los productos.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void seleccionarProducto(int position) {
+        Producto producto = productosList.get(position); // Obtener el producto seleccionado
+        editId.setText(producto.getId());
+        editNombre.setText(producto.getNombre());
+        editPrecio.setText(String.valueOf(producto.getPrecio()));
+        editCantidad.setText(String.valueOf(producto.getCantidad()));
     }
 
     private void agregarProducto() {
