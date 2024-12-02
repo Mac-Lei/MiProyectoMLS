@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductosActivity extends AppCompatActivity {
@@ -29,10 +30,11 @@ public class ProductosActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> adapter;
     private ArrayList<Producto> productosList;
-    private ArrayList<Producto> productosSeleccionados; // Carrito de compras
+    private ArrayList<Producto> productosSeleccionados;
     private DatabaseReference databaseReference;
 
     private double totalCompra = 0.0;
+    private int selectedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +62,9 @@ public class ProductosActivity extends AppCompatActivity {
 
         // Manejar selección de productos
         listViewProductos.setOnItemClickListener((parent, view, position, id) -> {
+            selectedPosition = position;
             Producto productoSeleccionado = productosList.get(position);
-            if (productoSeleccionado != null) {
-                textSeleccionProducto.setText("Producto seleccionado: " + productoSeleccionado.getNombre());
-            }
+            textSeleccionProducto.setText("Producto seleccionado: " + productoSeleccionado.getNombre());
         });
 
         // Botón para agregar producto al carrito
@@ -104,6 +105,11 @@ public class ProductosActivity extends AppCompatActivity {
     }
 
     private void agregarProductoACompra() {
+        if (selectedPosition == -1) {
+            Toast.makeText(this, "Seleccione un producto primero.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String cantidadStr = editCantidadSeleccionada.getText().toString();
         if (cantidadStr.isEmpty()) {
             Toast.makeText(this, "Ingrese una cantidad válida.", Toast.LENGTH_SHORT).show();
@@ -111,25 +117,26 @@ public class ProductosActivity extends AppCompatActivity {
         }
 
         int cantidad = Integer.parseInt(cantidadStr);
-        int position = listViewProductos.getCheckedItemPosition();
-        if (position < 0 || position >= productosList.size()) {
-            Toast.makeText(this, "Seleccione un producto.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        Producto productoSeleccionado = productosList.get(selectedPosition);
 
-        Producto productoSeleccionado = productosList.get(position);
         if (cantidad > productoSeleccionado.getCantidad()) {
             Toast.makeText(this, "Cantidad supera el stock disponible.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        productoSeleccionado.setCantidad(cantidad);
-        productosSeleccionados.add(productoSeleccionado);
+        Producto productoCarrito = new Producto(productoSeleccionado.getId(),
+                productoSeleccionado.getNombre(),
+                productoSeleccionado.getPrecio(),
+                cantidad);
 
-        totalCompra += productoSeleccionado.getPrecio() * cantidad;
+        productosSeleccionados.add(productoCarrito);
+        productoSeleccionado.setCantidad(productoSeleccionado.getCantidad() - cantidad);
+
+        totalCompra += productoCarrito.getPrecio() * cantidad;
         textTotalCompra.setText("Total: $" + totalCompra);
 
         Toast.makeText(this, "Producto agregado al carrito.", Toast.LENGTH_SHORT).show();
+        adapter.notifyDataSetChanged();
     }
 
     private void confirmarCompra() {
