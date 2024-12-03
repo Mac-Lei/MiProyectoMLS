@@ -30,7 +30,7 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <img src="Capturas/AgregarCarro.png" alt="" style="display: block; margin: 10px auto;">
   
   <p style="text-align: center;">Luego se tiene que confirmar la compra y muestra el detalle de esta</p>
-  <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/DetalleCompra.png" alt="" style="display: block; margin: 10px auto;">
 
 # Interfaz Administrador:
 <p style="text-align: center;">Pantalla de inicio de sesión para el administrador</p>
