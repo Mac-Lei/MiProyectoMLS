@@ -13,26 +13,52 @@ Al iniciar sesión con cliente aparece una ventana con todos los productos que e
 Al iniciar sesión con administrador aparece una ventana donde se puede hacer un CRUD, además de una lista con los productos que hay en la base de datos. El administrador tiene que poner todos los campos, incluyendo el ID del producto y luego puede agregarlo. Por último puede hacer cualquier paso del CRUD.
 
 # Evidencia con imágenes
-Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si es Cliente o Administrador: 
+<p style="text-align: center;">Cuando se iniciar el proyecto muestra un SplashScreen</p>
+  <img src="Capturas/Splashscreen.png" alt="" style="display: block; margin: 10px auto;">
 
-- Interfaz Inicio de Sesion:
-  <p style="text-align: center;"></p>
+# Interfaz elegir rol:
+  <p style="text-align: center;">Aquí se selecciona si es Cliente o Administrador: </p>
   <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
-- Interfaz Cliente:
-  <p style="text-align: center;"></p>
+# Cliente
+<p style="text-align: center;">Pantalla de inicio de sesión para el cliente</p>
+  <img src="Capturas/InterfazCliente.png" alt="" style="display: block; margin: 10px auto;">
+  
+  <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con cliente</p>
   <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
+  
+  <p style="text-align: center;">Se tiene que seleccionar un producto y luego tiene que ingresar la cantidad de ese producto</p>
+  <img src="Capturas/AgregarCarro.png" alt="" style="display: block; margin: 10px auto;">
+  
+  <p style="text-align: center;">Luego se tiene que confirmar la compra y muestra el detalle de esta</p>
+  <img src="Capturas/DetalleCompra.png" alt="" style="display: block; margin: 10px auto;">
 
-- Interfaz Detalles Compra:
-  <p style="text-align: center;"></p>
-  <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
-
-- Interfaz Administrador:
-  <p style="text-align: center;"></p>
+# Interfaz Administrador:
+<p style="text-align: center;">Pantalla de inicio de sesión para el administrador</p>
+  <img src="Capturas/InterfazAdministrador.png" alt="" style="display: block; margin: 10px auto;">
+  
+  <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
+  
+- Crear
+  <p style="text-align: center;">Agregué las Papas fritas</p>
+  <img src="Capturas/Crear.png" alt="" style="display: block; margin: 10px auto;">
+  
+- Actualizar
+<p style="text-align: center;">Actualicé el precio de la Mantequilla, por ende se asume que también se puede seleccionar un elemento. Vendría siendo el leer</p>
+  <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
+  
+- Eliminar
+<p style="text-align: center;">Eliminé la Sal</p>
+  <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
 
-- Tablas en Firebase:
+# Enviar datos a MQTT:
+- En la aplicacion IoT MQTT Panel muestra los datos que envié. No le saco captura a los códigos porque ya están en el GitHub
+<p style="text-align: center;"></p>
+  <img src="Capturas/MQTT.jpg" alt="" style="display: block; margin: 10px auto;">
 
+# Tablas en Firebase:
+- Aquí se puede ver las tablas que hay dentro de Firebase y también que se agregan correctamente productos
   <p style="text-align: center;"></p>
-  <img src="Capturas/Firebase.png" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/BaseDatos.png" alt="" style="display: block; margin: 10px auto;">
 
