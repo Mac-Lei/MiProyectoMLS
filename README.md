@@ -37,5 +37,5 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 - Tablas en Frebase:
 
   <p style="text-align: center;"></p>
-  <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/Firebase.png" alt="" style="display: block; margin: 10px auto;">
 
