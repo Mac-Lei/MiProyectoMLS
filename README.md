@@ -12,11 +12,16 @@ Al iniciar sesión con cliente aparece una ventana con todos los productos que e
 Al iniciar sesión con administrador aparece una ventana donde se puede hacer un CRUD, además de una lista con los productos que hay en la base de datos. El administrador tiene que poner todos los campos, incluyendo el ID del producto y luego puede agregarlo. Por último puede hacer cualquier paso del CRUD.
 
 # Evidencia con imágenes
-- Cuando se inicia el proyecto sale esta ventana. Aquí  es donde se selecciona si es Cliente o Administrador: 
-![Inicio de sesion](Capturas/Home.png)
+
+- Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si es Cliente o Administrador: 
+
+  <p style="text-align: center;">Inicio de sesión</p>
+  <img src="Capturas/Home.png" alt="Inicio de sesion" style="display: block; margin: 10px auto;">
 
 - Interfaz Cliente:
-![Inicio de sesion](Capturas/Cliente.png)
+
+  <p style="text-align: center;">Interfaz Cliente</p>
+  <img src="Capturas/Cliente.png" alt="Interfaz Cliente" style="display: block; margin: 10px auto;">
 
 - Interfaz Administrador:
 ![Inicio de sesion](Capturas/Administrador.png)
