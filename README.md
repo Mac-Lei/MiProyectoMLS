@@ -55,5 +55,5 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 # Tablas en Firebase:
 
   <p style="text-align: center;"></p>
-  <img src="Capturas/Firebase.png" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/.png" alt="" style="display: block; margin: 10px auto;">
 
