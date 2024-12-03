@@ -42,6 +42,11 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 <p style="text-align: center;">Eliminé la Sal</p>
   <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
 
+# Enviar datos a MQTT:
+- En la aplicacion IoT MQTT Panel muestra los datos que envié. No le saco captura a los códigos porque ya están en el GitHub
+<p style="text-align: center;"></p>
+  <img src="Capturas/mqtt.jpg" alt="" style="display: block; margin: 10px auto;">
+
   
 
 # Tablas en Firebase:
