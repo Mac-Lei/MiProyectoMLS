@@ -20,10 +20,16 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 
 - Interfaz Cliente:
 
-  <p style="text-align: center;">Interfaz Cliente</p>
+  <p style="text-align: center;"></p>
   <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
+
+- Interfaz Detalles Compra:
+
+  <p style="text-align: center;"></p>
+  <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
 
 - Interfaz Administrador:
 
-  <p style="text-align: center;">Interfaz Administrador</p>
+  <p style="text-align: center;"></p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
+
