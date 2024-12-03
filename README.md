@@ -12,4 +12,4 @@ Al iniciar sesión con cliente aparece una ventana con todos los productos que e
 Al iniciar sesión con administrador aparece una ventana donde se puede hacer un CRUD, además de una lista con los productos que hay en la base de datos. El administrador tiene que poner todos los campos, incluyendo el ID del producto y luego puede agregarlo. Por último puede hacer cualquier paso del CRUD.
 
 # Evidencia con imágenes
-![Inicio de sesion](Mac-Lei/MiProyectoMLS/master/Capturas/Home.png)
+![Inicio de sesion](Mac-Lei/MiProyectoMLS/edit/master/Capturas/Home.png)
