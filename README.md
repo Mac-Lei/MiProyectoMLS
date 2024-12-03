@@ -33,10 +33,10 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
 - Creaar
-  <p style="text-align: center;">Agregué las papas fritas</p>
+  <p style="text-align: center;">Agregué las Papas fritas</p>
   <img src="Capturas/Crear.png" alt="" style="display: block; margin: 10px auto;">
 - Actualizar
-<p style="text-align: center;">Actualicé el precio de la mantequilla, por ende se asume que también se puede seleccionar un elemento. Vendría siendo el leer</p>
+<p style="text-align: center;">Actualicé el precio de la Mantequilla, por ende se asume que también se puede seleccionar un elemento. Vendría siendo el leer</p>
   <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
 - Eliminar
 <p style="text-align: center;">Eliminé la sal</p>
