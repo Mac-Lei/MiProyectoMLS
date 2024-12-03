@@ -15,7 +15,7 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 # Evidencia con imágenes
 Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si es Cliente o Administrador: 
 
-- Interfaz Inicio de Sesion:
+# Interfaz Inicio de Sesion:
   <p style="text-align: center;"></p>
   <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
