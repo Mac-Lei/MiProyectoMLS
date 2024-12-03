@@ -16,12 +16,14 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 - Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si es Cliente o Administrador: 
 
   <p style="text-align: center;">Inicio de sesión</p>
-  <img src="Capturas/Home.png" alt="Inicio de sesion" style="display: block; margin: 10px auto;">
+  <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
 - Interfaz Cliente:
 
   <p style="text-align: center;">Interfaz Cliente</p>
-  <img src="Capturas/Cliente.png" alt="Interfaz Cliente" style="display: block; margin: 10px auto;">
+  <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
 
 - Interfaz Administrador:
-![Inicio de sesion](Capturas/Administrador.png)
+
+  <p style="text-align: center;">Interfaz Administrador</p>
+  <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
