@@ -18,6 +18,7 @@
         android:textColor="@color/teal_200"
         android:textStyle="bold"/>
 
+    <!-- Botón Cliente -->
     <Button
         android:id="@+id/botonusuario"
         android:layout_width="match_parent"
@@ -25,18 +26,19 @@
         android:layout_margin="20dp"
         android:padding="10dp"
         android:text="CLIENTE"
-        android:background="@drawable/botones1"
-        android:textColor="@color/black"
-        android:layout_above="@+id/botonadministrador"/>
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
+        android:layout_above="@+id/botonadministrador" />
 
+    <!-- Botón Administrador -->
     <Button
         android:id="@+id/botonadministrador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/botones2"
+        android:backgroundTint="@android:color/holo_purple"
         android:text="ADMINISTRADOR"
-        android:textColor="@color/black"
+        android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:layout_marginLeft="20dp"
