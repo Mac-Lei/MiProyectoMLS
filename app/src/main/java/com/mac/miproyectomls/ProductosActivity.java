@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+
 import java.util.ArrayList;
 
 public class ProductosActivity extends AppCompatActivity {
@@ -34,6 +36,10 @@ public class ProductosActivity extends AppCompatActivity {
 
     private double totalCompra = 0.0;
     private int selectedPosition = -1;
+
+    // MQTTHandler
+    private MQTTHandler mqttHandler;
+    private static final String MQTT_TOPIC = "supermercado/productos";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,25 @@ public class ProductosActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>());
         listViewProductos.setAdapter(adapter);
 
+        // Inicializar MQTTHandler
+        mqttHandler = new MQTTHandler(new MQTTHandler.MQTTHandlerCallback() {
+            @Override
+            public void onMessageReceived(String topic, String message) {
+                Log.i("MQTT", "Mensaje recibido: " + message);
+            }
+
+            @Override
+            public void onConnectionLost(Throwable cause) {
+                Log.e("MQTT", "Conexión perdida: " + cause.getMessage());
+            }
+
+            @Override
+            public void onDeliveryComplete(IMqttDeliveryToken token) {
+                Log.i("MQTT", "Mensaje entregado.");
+            }
+        });
+        mqttHandler.connect();
+
         cargarProductos();
 
         // Manejar selección de productos
@@ -71,6 +96,7 @@ public class ProductosActivity extends AppCompatActivity {
 
         // Botón para confirmar compra
         btnConfirmarCompra.setOnClickListener(v -> confirmarCompra());
+
     }
 
     private void cargarProductos() {
@@ -143,14 +169,31 @@ public class ProductosActivity extends AppCompatActivity {
 
     private void confirmarCompra() {
         if (productosSeleccionados.isEmpty()) {
-            Toast.makeText(this, "Carrito vacío.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El carrito está vacío.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        StringBuilder resumenCompra = new StringBuilder("Resumen de Compra:\n");
+        for (Producto producto : productosSeleccionados) {
+            resumenCompra.append("Producto: ").append(producto.getNombre())
+                    .append(" - Cantidad: ").append(producto.getCantidad())
+                    .append(" - Subtotal: $").append(producto.getPrecio() * producto.getCantidad())
+                    .append("\n");
+        }
+        resumenCompra.append("Total: $").append(totalCompra);
+
+        // Enviar resumen de compra a través de MQTT
+        mqttHandler.publishMessage(MQTT_TOPIC, resumenCompra.toString());
+
+        // Mostrar actividad de resumen de compra
         Intent intent = new Intent(this, activity_resumen_compra.class);
-        // Enviar los datos de productos y el total de la compra al resumen
-        intent.putExtra("productos", productosSeleccionados);
-        intent.putExtra("totalCompra", totalCompra);
+        intent.putExtra("resumenCompra", resumenCompra.toString());
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mqttHandler.disconnect();
     }
 }

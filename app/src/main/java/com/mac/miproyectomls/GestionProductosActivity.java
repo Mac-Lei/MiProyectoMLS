@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,14 +76,20 @@ public class GestionProductosActivity extends AppCompatActivity {
         });
 
         btnCerrarSesionProductos.setOnClickListener(v -> {
+            // Cerrar sesión de Firebase
+            FirebaseAuth.getInstance().signOut();
+
+            // Redirigir al inicio
             Intent intentHome = new Intent(GestionProductosActivity.this, HomeActivity.class);
             intentHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intentHome);
             finish(); // Cierra la actividad actual
         });
 
+
         // Configurar selección en el ListView
         listViewProductos.setOnItemClickListener((adapterView, view, position, id) -> seleccionarProducto(position));
+
     }
 
     private void cargarProductos() {
