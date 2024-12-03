@@ -1,5 +1,6 @@
 package com.mac.miproyectomls;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,8 +23,9 @@ import java.util.ArrayList;
 public class GestionProductosActivity extends AppCompatActivity {
 
     private EditText editId, editNombre, editPrecio, editCantidad;
-    private Button btnAgregar, btnActualizar, btnEliminar;
+    private Button btnAgregar, btnActualizar, btnEliminar, btnCerrarSesionProductos;
     private ListView listViewProductos;
+
 
     private DatabaseReference databaseReference;
     private ArrayList<Producto> productosList;
@@ -43,6 +45,7 @@ public class GestionProductosActivity extends AppCompatActivity {
         btnActualizar = findViewById(R.id.btnActualizar);
         btnEliminar = findViewById(R.id.btnEliminar);
         listViewProductos = findViewById(R.id.listViewProductos);
+        btnCerrarSesionProductos = findViewById(R.id.btnCerrarSesionProductos);
 
         // Inicializar Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("productos");
@@ -69,6 +72,13 @@ public class GestionProductosActivity extends AppCompatActivity {
         btnEliminar.setOnClickListener(view -> {
             eliminarProducto();
             limpiarCampos();
+        });
+
+        btnCerrarSesionProductos.setOnClickListener(v -> {
+            Intent intentHome = new Intent(GestionProductosActivity.this, HomeActivity.class);
+            intentHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intentHome);
+            finish(); // Cierra la actividad actual
         });
 
         // Configurar selección en el ListView

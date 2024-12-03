@@ -56,4 +56,12 @@
         android:layout_height="wrap_content"
         android:dividerHeight="10dp"/>
 
+    <Button
+        android:id="@+id/btnCerrarSesionProductos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesion"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:dividerHeight="30dp"/>
+
 </LinearLayout>
