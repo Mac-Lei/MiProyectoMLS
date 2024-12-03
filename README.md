@@ -30,8 +30,11 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
   <p style="text-align: center;">Se tiene que seleccionar un producto y luego tiene que ingresar la cantidad de ese producto</p>
   <img src="Capturas/AgregarCarro.png" alt="" style="display: block; margin: 10px auto;">
   
-  <p style="text-align: center;">Luego se tiene que confirmar la compra y muestra el detalle de esta</p>
+  <p style="text-align: center;">Luego se tiene que confirmar la compra y muestra el detalle de esta.
+  Al presionar Cerrar Sesión, se dirige a la pestaña para elegir rol</p>
   <img src="Capturas/DetalleCompra.png" alt="" style="display: block; margin: 10px auto;">
+
+  
 
 # Interfaz Administrador:
 <p style="text-align: center;">Pantalla de inicio de sesión para el administrador</p>
@@ -51,6 +54,7 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 - Eliminar
 <p style="text-align: center;">Eliminé la Sal</p>
   <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
+- Al presionar Cerrar Sesión, se dirige a la pestaña para elegir rol
 
 # Enviar datos a MQTT:
 - En la aplicacion IoT MQTT Panel muestra los datos que envié. No le saco captura a los códigos porque ya están en el GitHub
