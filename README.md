@@ -19,9 +19,12 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <p style="text-align: center;"></p>
   <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
-- Interfaz Cliente:
-  <p style="text-align: center;"></p>
+# Interfaz Cliente
+  <p style="text-align: center;">Interfaz Cliente </p>
   <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
+- Se tiene que seleccionar un producto y luego tiene que ingresar la cantidad de ese producto
+  <p style="text-align: center;">Interfaz Cliente </p>
+  <img src="Capturas/AgregarCarro.png" alt="" style="display: block; margin: 10px auto;">
 
 - Interfaz Detalles Compra:
   <p style="text-align: center;"></p>
