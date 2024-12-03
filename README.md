@@ -32,6 +32,9 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 # Interfaz Administrador:
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
+- Agregé un producto
+  <p style="text-align: center;"></p>
+  <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
 
   
 
