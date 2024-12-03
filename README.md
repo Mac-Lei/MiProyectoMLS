@@ -32,14 +32,14 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 # Interfaz Administrador:
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
-- Agregué un producto
+- Creaar
   <p style="text-align: center;">Agregué las papas fritas</p>
   <img src="Capturas/Crear.png" alt="" style="display: block; margin: 10px auto;">
-- Actualicé un producto
-<p style="text-align: center;">Actualicé el precio de la mantequilla</p>
+- Actualizar
+<p style="text-align: center;">Actualicé el precio de la mantequilla, por ende se asume que también se puede seleccionar un elemento. Vendría siendo el leer</p>
   <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
-- Eliminé un producto
-<p style="text-align: center;">Eliminé el arroz</p>
+- Eliminar
+<p style="text-align: center;">Eliminé la sal</p>
   <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
 
   
