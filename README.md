@@ -32,9 +32,15 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 # Interfaz Administrador:
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
-- Agregé un producto
-  <p style="text-align: center;"></p>
-  <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
+- Agregué un producto
+  <p style="text-align: center;">Agregué las papas fritas</p>
+  <img src="Capturas/Agregar.png" alt="" style="display: block; margin: 10px auto;">
+- Actualicé un producto
+<p style="text-align: center;">Actualicé el precio de la mantequilla</p>
+  <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
+- Eliminé un producto
+<p style="text-align: center;">Eliminé el arroz</p>
+  <img src="Capturas/Eliminar" alt="" style="display: block; margin: 10px auto;">
 
   
 
