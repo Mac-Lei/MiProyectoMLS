@@ -55,7 +55,7 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 # Enviar datos a MQTT:
 - En la aplicacion IoT MQTT Panel muestra los datos que envié. No le saco captura a los códigos porque ya están en el GitHub
 <p style="text-align: center;"></p>
-  <img src="Capturas/mqtt.jpg" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/MQTT.jpg" alt="" style="display: block; margin: 10px auto;">
 
 # Tablas en Firebase:
 - Aquí se puede ver las tablas que hay dentro de Firebase y también que se agregan correctamente productos
