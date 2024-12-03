@@ -53,7 +53,7 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <img src="Capturas/mqtt.jpg" alt="" style="display: block; margin: 10px auto;">
 
 # Tablas en Firebase:
-
+- Aquí se puede ver las tablas que hay dentro de Firebase y también que se agregan correctamente productos
   <p style="text-align: center;"></p>
   <img src="Capturas/BaseDatos.png" alt="" style="display: block; margin: 10px auto;">
 
