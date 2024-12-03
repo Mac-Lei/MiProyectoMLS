@@ -15,11 +15,14 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
 # Evidencia con imágenes
 Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si es Cliente o Administrador: 
 
-# Interfaz Inicio de Sesion:
+# Interfaz elegir rol:
   <p style="text-align: center;"></p>
   <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
-# Interfaz Cliente
+# Cliente
+<p style="text-align: center;">Pantalla de inicio de sesión para el cliente</p>
+  <img src="Capturas/InterfazCliente.png" alt="" style="display: block; margin: 10px auto;">
+  
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con cliente</p>
   <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
   
@@ -32,6 +35,9 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
 
 # Interfaz Administrador:
+<p style="text-align: center;">Pantalla de inicio de sesión para el administrador</p>
+  <img src="Capturas/InterfazAdministrador.png" alt="" style="display: block; margin: 10px auto;">
+  
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con administrador</p>
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
   
