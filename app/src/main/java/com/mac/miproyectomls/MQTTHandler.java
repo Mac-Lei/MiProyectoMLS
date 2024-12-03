@@ -7,7 +7,7 @@ public class MQTTHandler {
     private MqttConnectOptions mqttConnectOptions;
 
     private static final String SERVER_URI = "tcp://broker.emqx.io:1883"; // Dirección del broker MQTT
-    private static final String CLIENT_ID = "AndroidClient";                // ID único del cliente
+    private static final String CLIENT_ID = "AndroidClient324235325";                // ID único del cliente
     private static final String DEFAULT_TOPIC = "supermercado/productos";   // Tema predeterminado
 
     private MQTTHandlerCallback callback;
@@ -100,3 +100,4 @@ public class MQTTHandler {
         }
     }
 }
+

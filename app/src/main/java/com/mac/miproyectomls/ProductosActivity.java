@@ -67,6 +67,7 @@ public class ProductosActivity extends AppCompatActivity {
         mqttHandler = new MQTTHandler(new MQTTHandler.MQTTHandlerCallback() {
             @Override
             public void onMessageReceived(String topic, String message) {
+                // Manejar mensajes si es necesario
                 Log.i("MQTT", "Mensaje recibido: " + message);
             }
 
@@ -96,7 +97,6 @@ public class ProductosActivity extends AppCompatActivity {
 
         // Botón para confirmar compra
         btnConfirmarCompra.setOnClickListener(v -> confirmarCompra());
-
     }
 
     private void cargarProductos() {
@@ -169,26 +169,39 @@ public class ProductosActivity extends AppCompatActivity {
 
     private void confirmarCompra() {
         if (productosSeleccionados.isEmpty()) {
-            Toast.makeText(this, "El carrito está vacío.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Carrito vacío.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        StringBuilder resumenCompra = new StringBuilder("Resumen de Compra:\n");
-        for (Producto producto : productosSeleccionados) {
-            resumenCompra.append("Producto: ").append(producto.getNombre())
-                    .append(" - Cantidad: ").append(producto.getCantidad())
-                    .append(" - Subtotal: $").append(producto.getPrecio() * producto.getCantidad())
-                    .append("\n");
-        }
-        resumenCompra.append("Total: $").append(totalCompra);
+        // Generar resumen de compra y enviar a MQTT
+        String resumenCompra = generarResumenCompra();
+        Log.e("datos a mqtt", resumenCompra);
+        mqttHandler.publishMessage(MQTT_TOPIC, resumenCompra);
 
-        // Enviar resumen de compra a través de MQTT
-        mqttHandler.publishMessage(MQTT_TOPIC, resumenCompra.toString());
-
-        // Mostrar actividad de resumen de compra
+        // Pasar datos al resumen de compra
         Intent intent = new Intent(this, activity_resumen_compra.class);
-        intent.putExtra("resumenCompra", resumenCompra.toString());
+        intent.putExtra("productos", productosSeleccionados);
+        intent.putExtra("totalCompra", totalCompra);
         startActivity(intent);
+
+        Toast.makeText(this, "Compra confirmada.", Toast.LENGTH_SHORT).show();
+    }
+
+    private String generarResumenCompra() {
+        StringBuilder resumen = new StringBuilder();
+        resumen.append("{ \"productos\": [");
+        for (Producto producto : productosSeleccionados) {
+            resumen.append("{")
+                    .append("\"id\": \"").append(producto.getId()).append("\", ")
+                    .append("\"nombre\": \"").append(producto.getNombre()).append("\", ")
+                    .append("\"cantidad\": ").append(producto.getCantidad()).append(", ")
+                    .append("\"precio\": ").append(producto.getPrecio())
+                    .append("},");
+        }
+        resumen.setLength(resumen.length() - 1); // Eliminar la última coma
+        resumen.append("], \"total\": ").append(totalCompra).append(" }");
+
+        return resumen.toString();
     }
 
     @Override
