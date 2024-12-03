@@ -5,6 +5,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- TextView para el título "Resumen de la compra" -->
+    <TextView
+        android:id="@+id/textTituloResumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resumen de la compra"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
     <!-- ListView para mostrar los productos -->
     <ListView
         android:id="@+id/listViewResumen"

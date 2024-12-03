@@ -140,19 +140,53 @@ public class GestionProductosActivity extends AppCompatActivity {
         String precioStr = editPrecio.getText().toString().trim();
         String cantidadStr = editCantidad.getText().toString().trim();
 
+        // Validar campos obligatorios
         if (TextUtils.isEmpty(id)) {
             Toast.makeText(this, "El ID es obligatorio para actualizar.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(precioStr) || TextUtils.isEmpty(cantidadStr)) {
+            Toast.makeText(this, "Todos los campos son obligatorios.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validar que precio y cantidad sean números válidos
+        if (!esNumeroValido(precioStr) || !esNumeroValido(cantidadStr)) {
+            Toast.makeText(this, "Precio y cantidad deben ser números válidos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Convertir precio y cantidad a enteros
         int precio = Integer.parseInt(precioStr);
         int cantidad = Integer.parseInt(cantidadStr);
 
+        // Crear objeto producto actualizado
         Producto producto = new Producto(id, nombre, precio, cantidad);
+
+        // Actualizar en Firebase
         databaseReference.child(id).setValue(producto)
-                .addOnSuccessListener(unused -> Toast.makeText(this, "Producto actualizado.", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(this, "Error al actualizar el producto.", Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(unused -> {
+                    Toast.makeText(this, "Producto actualizado correctamente.", Toast.LENGTH_SHORT).show();
+                    cargarProductos(); // Refrescar la lista para mostrar los datos actualizados
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FirebaseError", e.getMessage());
+                    Toast.makeText(this, "Error al actualizar el producto.", Toast.LENGTH_SHORT).show();
+                });
     }
+
+    // Método auxiliar para validar si un valor es un número entero válido
+    private boolean esNumeroValido(String valor) {
+        try {
+            Integer.parseInt(valor.trim()); // Intentar convertir a entero
+            return true; // Es válido si no lanza excepción
+        } catch (NumberFormatException e) {
+            return false; // No es un número válido
+        }
+    }
+
+
 
     private void eliminarProducto() {
         String id = editId.getText().toString().trim();
