@@ -34,13 +34,13 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <img src="Capturas/Administrador.png" alt="" style="display: block; margin: 10px auto;">
 - Agregué un producto
   <p style="text-align: center;">Agregué las papas fritas</p>
-  <img src="Capturas/Agregar.png" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/Crear.png" alt="" style="display: block; margin: 10px auto;">
 - Actualicé un producto
 <p style="text-align: center;">Actualicé el precio de la mantequilla</p>
   <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
 - Eliminé un producto
 <p style="text-align: center;">Eliminé el arroz</p>
-  <img src="Capturas/Eliminar" alt="" style="display: block; margin: 10px auto;">
+  <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
 
   
 
