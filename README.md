@@ -26,12 +26,10 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
   <p style="text-align: center;">Esta es la pantalla que aparece al iniciar sesion con cliente</p>
   <img src="Capturas/Cliente.png" alt="" style="display: block; margin: 10px auto;">
   
-- Se tiene que seleccionar un producto y luego tiene que ingresar la cantidad de ese producto
-  <p style="text-align: center;"></p>
+  <p style="text-align: center;">Se tiene que seleccionar un producto y luego tiene que ingresar la cantidad de ese producto</p>
   <img src="Capturas/AgregarCarro.png" alt="" style="display: block; margin: 10px auto;">
   
-- Luego se tiene que confirmar la compra y muestra el detalle de esta
-  <p style="text-align: center;"></p>
+  <p style="text-align: center;">Luego se tiene que confirmar la compra y muestra el detalle de esta</p>
   <img src="Capturas/Detalles.png" alt="" style="display: block; margin: 10px auto;">
 
 # Interfaz Administrador:
