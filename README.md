@@ -39,7 +39,7 @@ Cuando se inicia el proyecto sale esta ventana. Aquí es donde se selecciona si 
 <p style="text-align: center;">Actualicé el precio de la Mantequilla, por ende se asume que también se puede seleccionar un elemento. Vendría siendo el leer</p>
   <img src="Capturas/Actualizar.png" alt="" style="display: block; margin: 10px auto;">
 - Eliminar
-<p style="text-align: center;">Eliminé la sal</p>
+<p style="text-align: center;">Eliminé la Sal</p>
   <img src="Capturas/Eliminar.png" alt="" style="display: block; margin: 10px auto;">
 
   
