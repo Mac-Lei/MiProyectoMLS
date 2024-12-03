@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 }
