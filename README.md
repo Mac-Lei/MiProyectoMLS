@@ -17,7 +17,7 @@ Al iniciar sesión con administrador aparece una ventana donde se puede hacer un
   <img src="Capturas/Splashscreen.png" alt="" style="display: block; margin: 10px auto;">
 
 # Interfaz elegir rol:
-  <p style="text-align: center;">Aquí se selecciona si es Cliente o Administrador: </p>
+  <p style="text-align: center;"> Después del Splashscreen aparece esta ventana, aquí se selecciona si es Cliente o Administrador: </p>
   <img src="Capturas/Home.png" alt="" style="display: block; margin: 10px auto;">
 
 # Cliente
